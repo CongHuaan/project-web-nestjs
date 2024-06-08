@@ -5,6 +5,9 @@ import { CourseModule } from '@modules/course/course.module';
 import { AdminModule } from '@modules/admin/admin.module';
 import { DatabaseModule } from '@module/database.module';
 import { ConfigModule } from '@nestjs/config';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { QueueModule } from './queue/queue.module';
+import { Bill } from '@modules/bill/entities/bill.entity';
 
 @Module({
   imports: [
@@ -16,6 +19,10 @@ import { ConfigModule } from '@nestjs/config';
     CourseModule,
     AdminModule,
     DatabaseModule,
+    QueueModule,
+    MailerModule,
+    AdminModule,
+    Bill
   ],
   controllers: [],
   providers: [],

@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { Course } from '@modules/course/entities/course.entity'; // Đảm bảo rằng đường dẫn tới entity Course là đúng
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Bill } from '@modules/bill/entities/bill.entity';
 
 @Entity()
 export class User {
@@ -31,6 +32,9 @@ export class User {
 
   @OneToMany(() => Course, (course) => course.user)
   courses: Course[];
+    
+  @OneToMany(() => Bill, (bill) => bill.user)
+  bills: Bill[];
 
   constructor(user: Partial<User>) {
     Object.assign(this, user);
