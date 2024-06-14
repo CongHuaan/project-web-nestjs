@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { QueueModule } from './queue/queue.module';
 import { Bill } from '@modules/bill/entities/bill.entity';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { Bill } from '@modules/bill/entities/bill.entity';
     AdminModule,
     Bill
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

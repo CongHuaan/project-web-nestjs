@@ -15,7 +15,6 @@ export class MailConsumer {
   @Process('send-mail')
   async sendMail(job: Job<any>) {
     const { data } = job;
-    console.log(data);
     try {
       await this.mailService.sendMail({
         to: data.to,

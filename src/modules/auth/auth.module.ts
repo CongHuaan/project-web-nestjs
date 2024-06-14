@@ -6,6 +6,8 @@ import { User } from '@modules/user/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { MailProducer } from 'src/queue/producers/mail.producer';
 import { BullModule } from '@nestjs/bull';
+import { SignInValidator } from '@modules/auth/validator/signin.validator';
+import { SignUpValidator } from '@modules/auth/validator/signup.validator';
 
 @Module({
   imports: [
@@ -22,6 +24,6 @@ import { BullModule } from '@nestjs/bull';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, MailProducer],
+  providers: [AuthService, MailProducer, SignInValidator, SignUpValidator],
 })
 export class AuthModule {}
