@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { AuthDto } from '@modules/auth/auth.dto';
+import { AuthDto, SignUpDto } from '@modules/auth/auth.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '@modules/user/entities/user.entity';
 import { Repository } from 'typeorm';
@@ -34,13 +34,11 @@ export class AuthService {
         'Sai tài khoản hoặc mật khẩu! Vui lòng đăng nhập lại!',
       );
     }
-    console.log({
-      dto,
-    });
     return this.signInToken(user.id, user.email);
   }
 
-  async signUp(dto: AuthDto) {
+  async signUp(dto: SignUpDto) {
+    console.log(dto);
     const existingUser = await this.userRepository.findOne({
       where: {
         email: dto.email,
@@ -57,6 +55,8 @@ export class AuthService {
     const newUser = this.userRepository.create({
       email: dto.email,
       password: hash,
+      firstName: dto.firstName,
+      lastName: dto.lastName,
     });
     await this.userRepository.save(newUser);
     console.log({

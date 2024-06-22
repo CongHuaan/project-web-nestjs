@@ -14,3 +14,9 @@ services:
       - ./docker-data/postgres-data:/var/lib/postgresql/data
     env_file:
       - .env
+  
+  redis:
+    image: redis:latest
+    container_name: my-redis
+    ports:
+      - "6379:6379"

@@ -29,9 +29,6 @@ export class User {
 
   @Column({ nullable: true })
   wallet: number;
-
-  @OneToMany(() => Course, (course) => course.user)
-  courses: Course[];
     
   @OneToMany(() => Bill, (bill) => bill.user)
   bills: Bill[];

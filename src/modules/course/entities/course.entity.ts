@@ -16,10 +16,10 @@ export class Course {
   @Column()
   price: number;
 
-  @ManyToOne(() => User, (user) => user.courses)
-  user: User;
+  @Column()
+  slb: number;
 
-  @OneToMany(() => Bill, (bill) => bill.course)
-  bills: Bill[];
+  // @Column()
+  // formattedPrice: string;
   
 }

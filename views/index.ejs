@@ -1,9 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>NestJS EJS</title>
-  </head>
-  <body>
-    <h1><%= message %></h1>
-  </body>
-</html>
+<%- include('header') %>
+
+<div class="container">
+  <div class="row">
+    <% courseData.forEach(course => { %>
+      <div class="card col-md-4 mb-4">
+        <h5 class="card-header"><%= course.name %></h5>
+        <div class="card-body">
+          <h5 class="card-title">Mô tả</h5>
+          <p class="card-text"><%= course.description %></p>
+          <hr>
+          <h5 class="card-title">Giá <%= course.price %> VNĐ</h5>
+          <a href="#" class="btn btn-primary">Đăng ký</a>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('footer') %>

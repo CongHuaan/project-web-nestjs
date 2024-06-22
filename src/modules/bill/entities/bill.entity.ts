@@ -8,11 +8,11 @@ export class Bill {
     id: number;
 
     @Column()
-    dateTime: Date;
+    dateTime: Date = new Date();
 
     @ManyToOne(() => User, user => user.bills)
     user: User;
 
-    @ManyToOne(() => Course, course => course.bills)
-    course: Course;
+    @Column()
+    courseId: number
 }

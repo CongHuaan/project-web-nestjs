@@ -8,10 +8,12 @@ import { MailProducer } from 'src/queue/producers/mail.producer';
 import { BullModule } from '@nestjs/bull';
 import { SignInValidator } from '@modules/auth/validator/signin.validator';
 import { SignUpValidator } from '@modules/auth/validator/signup.validator';
+import { Course } from '@modules/course/entities/course.entity';
+import { CourseService } from '@modules/course/course.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Course]),
     JwtModule,
     BullModule.forRoot({
       redis: {
@@ -24,6 +26,6 @@ import { SignUpValidator } from '@modules/auth/validator/signup.validator';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, MailProducer, SignInValidator, SignUpValidator],
+  providers: [AuthService, MailProducer, SignInValidator, SignUpValidator, CourseService],
 })
 export class AuthModule {}

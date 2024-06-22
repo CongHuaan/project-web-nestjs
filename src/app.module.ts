@@ -9,12 +9,17 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { QueueModule } from './queue/queue.module';
 import { Bill } from '@modules/bill/entities/bill.entity';
 import { AppController } from './app.controller';
+import { AuthGuard } from '@modules/auth/guard/auth.guard';
+import { APP_GUARD, Reflector } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '@modules/user/entities/user.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    TypeOrmModule.forFeature([User]),
     AuthModule,
     UserModule,
     CourseModule,
@@ -23,9 +28,15 @@ import { AppController } from './app.controller';
     QueueModule,
     MailerModule,
     AdminModule,
-    Bill
+    Bill,
   ],
   controllers: [AppController],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    Reflector,
+  ],
 })
 export class AppModule {}
