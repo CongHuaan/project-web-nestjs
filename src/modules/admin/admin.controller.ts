@@ -16,10 +16,6 @@ export class AdminController {
       const result = await this.adminService.signIn(dto);
       const cousreData = await this.adminService.getAllCourses();
       const userData = await this.adminService.getAllUsers();
-      console.log(cousreData);
-      res.cookie('name', result, { httpOnly: true });
-      res.cookie('courseData', cousreData, { httpOnly: true });
-      res.cookie('userData', userData, { httpOnly: true });
       return res.redirect('/adminHome');
     } catch (error) {
       return res.render('signin', { errorMessage: error.message });
@@ -37,9 +33,6 @@ export class AdminController {
       course.slb = 0;
       console.log(course);
       await this.adminService.createCourse(course);
-      res.clearCookie('courseData');
-      const cousreData = await this.adminService.getAllCourses();
-      res.cookie('courseData', cousreData, { httpOnly: true });
       return res.redirect('/adminCourse');
     } catch (error) {
       return res.render('admin_course', { errorMessage: error.message });
@@ -66,27 +59,18 @@ export class AdminController {
     course.description = description;
     course.price = price;
     await this.adminService.updateCourse(course);
-    res.clearCookie('courseData');
-    const cousreData = await this.adminService.getAllCourses();
-    res.cookie('courseData', cousreData, { httpOnly: true });
     return res.redirect('/adminCourse');
   }
 
   @Post('deleteCourse/:id')
   async deleteCourse(@Param('id') id: number, @Res() res: Response) {
     await this.adminService.deleteCourse(id);
-    res.clearCookie('courseData');
-    const cousreData = await this.adminService.getAllCourses();
-    res.cookie('courseData', cousreData, { httpOnly: true });
     return res.redirect('/adminCourse');
   }
 
   @Post('deleteUser/:id')
   async deleteUser(@Param('id') id: number, @Res() res: Response) {
     await this.adminService.deleteUser(id);
-    res.clearCookie('userData');
-    const userData = await this.adminService.getAllUsers();
-    res.cookie('userData', userData, { httpOnly: true });
     return res.redirect('/adminUser');
   }
 

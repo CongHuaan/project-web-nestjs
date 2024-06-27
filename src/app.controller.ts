@@ -5,9 +5,14 @@ import { GetUser } from '@modules/user/decorator/get-user.decorator';
 import { User } from '@modules/user/entities/user.entity';
 import { Controller, Get, Redirect, Render, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+
+  constructor(
+    private appService: AppService,
+  ){}
 
   @Public()
   @Get('signin')
@@ -25,10 +30,22 @@ export class AppController {
 
   @Get('home')
   @Render('index.ejs') 
-  HomePage(@GetUser() user: User, @Req() request: Request) {
+  async HomePage(@GetUser() user: User) {
     console.log(user);
-    const courseData = request.cookies['courseData'];
+    const courseData = await this.appService.getCourse();
     return {user, courseData};
+  }
+
+  @Get('updateInfor')
+  @Render('update_infor.ejs')
+  UpdateInforPage(@GetUser() user: User) {
+    return {user};
+  }
+
+  @Get('naptien')
+  @Render('naptien.ejs')
+  NaptienPage(@GetUser() user: User) {
+    return {user};
   }
 
   @Public()
@@ -48,11 +65,9 @@ export class AppController {
   @Public()
   @Get('adminCourse')
   @Render('admin_course.ejs')
-  AdminCoursePage(@Req() request: Request) {
-    const name = request.cookies['name'];
-    const courseData = request.cookies['courseData'];
-    console.log(name);
-    return {name, courseData};
+  async AdminCoursePage() {
+    const courseData = await this.appService.getCourse();
+    return {courseData};
   }
 
   @Public()
@@ -74,9 +89,10 @@ export class AppController {
   @Public()
   @Get('adminUser')
   @Render('admin_user.ejs')
-  AdminUserPage(@Req() request: Request) {
+  async AdminUserPage() {
+    const userData = await this.appService.getUser();
     return {
-      userData: request.cookies['userData']
+      userData
     }
   }
 }

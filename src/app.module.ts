@@ -13,13 +13,18 @@ import { AuthGuard } from '@modules/auth/guard/auth.guard';
 import { APP_GUARD, Reflector } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '@modules/user/entities/user.entity';
+import { Course } from '@modules/course/entities/course.entity';
+import { AdminService } from '@modules/admin/admin.service';
+import { Admin } from '@modules/admin/entities/admin.entity';
+import { AppService } from './app.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Course, Bill, Admin]),
     AuthModule,
     UserModule,
     CourseModule,
@@ -37,6 +42,9 @@ import { User } from '@modules/user/entities/user.entity';
       useClass: AuthGuard,
     },
     Reflector,
+    AppService,
+    AdminService,
+    JwtService,
   ],
 })
 export class AppModule {}

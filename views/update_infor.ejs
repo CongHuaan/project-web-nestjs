@@ -1,0 +1,26 @@
+<%- include('header') %>
+
+<div class="container">
+    <form action="/user/updateUser/<%= user.id  %>" method="post">
+      <div class="mb-3">
+        <label for="firstname" class="form-label">Họ</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" value="<%= user.firstName %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Tên</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" value="<%= user.lastName %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Số điện thoại</label>
+        <input type="tel" class="form-control" id="phone" name="phone" value="<%= user.phone %>" required>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Địa chỉ</label>
+        <input type="text" class="form-control" id="address" name="address" value="<%= user.address %>" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+  </div>
+  
+
+<%- include('footer') %>
