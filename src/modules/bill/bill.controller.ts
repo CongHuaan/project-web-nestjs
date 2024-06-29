@@ -19,12 +19,14 @@ export class BillController {
     @Post('dangky/:id')
     async dangky(@Param('id') courseId: number, @Res() res: Response, @GetUser() user: User) {
         const course = await this.adminService.getCourseById(courseId);
+        course.slb += 1;
         const bill = new Bill();
         bill.courseId = courseId;
         bill.user = user;
         user.wallet = user.wallet - course.price;
         const updateUser = await this.userSerivce.updateUser(user); 
         const create = await this.billService.createBill(bill);
+        const updateCourse = await this.adminService.updateCourse(course);
         res.redirect('/mykhoahoc');
     }
 }
