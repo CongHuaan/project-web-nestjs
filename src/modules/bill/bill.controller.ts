@@ -21,7 +21,7 @@ export class BillController {
         const course = await this.adminService.getCourseById(courseId);
         course.slb += 1;
         const bill = new Bill();
-        bill.courseId = courseId;
+        bill.course_id = courseId;
         bill.user = user;
         user.wallet = user.wallet - course.price;
         const updateUser = await this.userSerivce.updateUser(user); 

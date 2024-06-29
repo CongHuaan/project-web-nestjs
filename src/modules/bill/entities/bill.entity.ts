@@ -14,5 +14,5 @@ export class Bill {
     user: User;
 
     @Column()
-    courseId: number
+    course_id: number
 }
