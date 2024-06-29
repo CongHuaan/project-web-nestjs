@@ -18,6 +18,7 @@ import { AdminService } from '@modules/admin/admin.service';
 import { Admin } from '@modules/admin/entities/admin.entity';
 import { AppService } from './app.service';
 import { JwtService } from '@nestjs/jwt';
+import { BillModule } from '@modules/bill/bill.module';
 
 @Module({
   imports: [
@@ -32,8 +33,7 @@ import { JwtService } from '@nestjs/jwt';
     DatabaseModule,
     QueueModule,
     MailerModule,
-    AdminModule,
-    Bill,
+    BillModule,
   ],
   controllers: [AppController],
   providers: [

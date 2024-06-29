@@ -1,0 +1,20 @@
+<%- include('header') %>
+
+<div class="container">
+    <div class="row">
+      <% courseInBill.forEach(course => { %>
+        <div class="card col-md-4 mb-4">
+          <h5 class="card-header"><%= course.name %></h5>
+          <div class="card-body">
+            <h5 class="card-title">Mô tả</h5>
+            <p class="card-text"><%= course.description %></p>
+            <hr>
+            <h5 class="card-title">Giá <%= course.price %> VNĐ</h5>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+  
+
+<%- include('footer') %>

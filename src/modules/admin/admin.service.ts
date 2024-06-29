@@ -7,6 +7,7 @@ import { User } from '@modules/user/entities/user.entity';
 import { Course } from '@modules/course/entities/course.entity';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Bill } from '@modules/bill/entities/bill.entity';
 
 @Injectable({})
 export class AdminService {
@@ -17,6 +18,8 @@ export class AdminService {
     private userRepository: Repository<User>,
     @InjectRepository(Course)
     private courseRepository: Repository<Course>,
+    @InjectRepository(Bill)
+    private billRepository: Repository<Bill>,
     private config: ConfigService,
     private jwt: JwtService,
   ) {}
@@ -76,5 +79,12 @@ export class AdminService {
 
   async deleteUser(userId: number) {
     return await this.userRepository.delete({ id: userId });
+  }
+
+  async getAllBillById(userId: number) {
+    const bills = await this.billRepository.find({
+      where: { user: { id: userId } },
+    });
+    return bills;
   }
 }

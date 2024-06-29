@@ -6,9 +6,10 @@ import { AdminController } from './admin.controller';
 import { User } from '@modules/user/entities/user.entity';
 import { Course } from '@modules/course/entities/course.entity';
 import { JwtModule } from '@nestjs/jwt';
+import { Bill } from '@modules/bill/entities/bill.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Admin, User, Course]), JwtModule],
+  imports: [TypeOrmModule.forFeature([Admin, User, Course, Bill]), JwtModule],
   providers: [AdminService],
   controllers: [AdminController],
 })

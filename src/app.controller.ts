@@ -48,6 +48,13 @@ export class AppController {
     return {user};
   }
 
+  @Get('mykhoahoc')
+  @Render('my_khoahoc.ejs')
+  async MyKhoahocPage(@GetUser() user: User) {
+    const courseInBill = await this.appService.getBill(user.id);
+    return {user, courseInBill};
+  }
+
   @Public()
   @Get('admin')
   @Render('admin_signin.ejs')
