@@ -24,7 +24,7 @@ export class AppService {
         const courseData = await this.adminService.getAllCourses();
         const coursesInBills = [];
         for (const bill of billData) {
-            const course = courseData.find(course => course.id === bill.courseId);
+            const course = courseData.find(course => course.id === bill.course_id);
             
             if (course) {
               coursesInBills.push(course);

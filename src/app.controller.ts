@@ -28,9 +28,17 @@ export class AppController {
     return {};
   }
 
+  @Public()
+  @Get()
+  @Render('home.ejs')
+  async HomePage() {
+    const courseData = await this.appService.getCourse();
+    return {courseData};
+  }
+
   @Get('home')
   @Render('index.ejs') 
-  async HomePage(@GetUser() user: User) {
+  async HomeUserPage(@GetUser() user: User) {
     console.log(user);
     const courseData = await this.appService.getCourse();
     return {user, courseData};
