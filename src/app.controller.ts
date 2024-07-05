@@ -1,9 +1,7 @@
 import { Public } from '@modules/auth/decorator/public.decorator';
-import { AuthGuard } from '@modules/auth/guard/auth.guard';
-import { Course } from '@modules/course/entities/course.entity';
 import { GetUser } from '@modules/user/decorator/get-user.decorator';
 import { User } from '@modules/user/entities/user.entity';
-import { Controller, Get, Redirect, Render, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Render, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { AppService } from './app.service';
 
@@ -73,8 +71,9 @@ export class AppController {
   @Public()
   @Get('adminHome')
   @Render('admin_home.ejs')
-  AdminHomePage() {
-    return {};
+  async AdminHomePage() {
+    const course = await this.appService.getCourseBySlb();
+    return {course};
   }
 
   @Public()

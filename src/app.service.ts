@@ -32,4 +32,10 @@ export class AppService {
           }
         return coursesInBills;
     }
+
+    async getCourseBySlb(){
+        const course = await this.adminService.getCourseBySlb();
+        console.log(course);
+        return course;
+    }
 }

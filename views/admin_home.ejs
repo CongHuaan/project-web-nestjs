@@ -73,7 +73,7 @@
             </div>
           </div>
           <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link active"
+            <a href="adminHome" class="nav-item nav-link active"
               ><i class="fa fa-tachometer-alt me-2"></i>Trang chủ</a
             >
             <a href="adminCourse" class="nav-item nav-link"
@@ -136,6 +136,23 @@
             <h1 class="app-page-title mb-0" style="color: White">Khóa học bán chạy nhất</h1>
           </div>
         </div>
+
+        <div class="container">
+          <div class="row justify-content-center align-items-center" >
+              <div class="card col-md-4 mb-4">
+                <h5 class="card-header" style="color: black;"><%= course.name %></h5>
+                <div class="card-body">
+                  <h5 class="card-title" style="color: black;">Mô tả</h5>
+                  <p class="card-text" style="color: black;"><%= course.description %></p>
+                  <hr>
+                  <h5 class="card-title" style="color: black;">Giá: <%= course.price %> VNĐ</h5>
+                  <hr>
+                  <h5 class="slb" style="color: black;">Số lượng bán: <%= course.slb %></h5>
+                </div>
+              </div>
+          </div>
+        </div>
+
 
         <!-- Footer Start -->
         <div class="container-fluid pt-4 px-4">

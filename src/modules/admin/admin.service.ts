@@ -87,4 +87,12 @@ export class AdminService {
     });
     return bills;
   }
+
+  async getCourseBySlb() {
+    const course = await this.courseRepository.findOne({
+      where: {},
+      order: { slb: 'DESC' },
+    });
+    return course;
+  }
 }
