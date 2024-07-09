@@ -4,8 +4,10 @@ import { AdminService } from './admin.service';
 import { Response } from 'express';
 import { Public } from '@modules/auth/decorator/public.decorator';
 import { Course } from '@modules/course/entities/course.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 @Public()
+@ApiTags('admin')
 @Controller('admin')
 export class AdminController {
   constructor(private adminService: AdminService) {}

@@ -6,8 +6,10 @@ import { AuthDto, SignUpDto } from '@modules/auth/auth.dto';
 import { Response } from 'express';
 import { Public } from './decorator/public.decorator';
 import { CourseService } from '@modules/course/course.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Public()
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService,

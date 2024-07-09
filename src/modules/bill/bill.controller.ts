@@ -6,9 +6,11 @@ import { User } from "@modules/user/entities/user.entity";
 import { Bill } from "@modules/bill/entities/bill.entity";
 import { UserService } from "@modules/user/user.service";
 import { AdminService } from "@modules/admin/admin.service";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
 @Controller('bill')
-
+@ApiTags('bill')
+@ApiBearerAuth()
 export class BillController {
     constructor(
         private billService: BillService,

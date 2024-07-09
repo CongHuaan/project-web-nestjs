@@ -1,7 +1,10 @@
 import { Body, Controller, Post, Res } from "@nestjs/common";
 import { CourseService } from "@modules/course/course.service";
 import { Response } from "express";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
+@ApiTags('course')
+@ApiBearerAuth()
 @Controller('course')
 
 export class CourseController{

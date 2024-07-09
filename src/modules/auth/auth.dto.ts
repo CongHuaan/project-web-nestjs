@@ -8,6 +8,7 @@ import {
 import { SignInValidator } from '@modules/auth/validator/signin.validator';
 import { SignUpValidator } from '@modules/auth/validator/signup.validator';
 import e from 'express';
+import { ApiProperty } from '@nestjs/swagger';
 
 // export class SignUpDto {
 //   @IsEmail()
@@ -33,10 +34,12 @@ import e from 'express';
 // }
 
 export class AuthDto {
+  @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   password: string;
 }
