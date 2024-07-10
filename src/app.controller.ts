@@ -4,6 +4,7 @@ import { User } from '@modules/user/entities/user.entity';
 import { Controller, Get, Render, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { AppService } from './app.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
@@ -34,6 +35,7 @@ export class AppController {
     return {courseData};
   }
 
+  @ApiBearerAuth()
   @Get('home')
   @Render('index.ejs') 
   async HomeUserPage(@GetUser() user: User) {
@@ -42,18 +44,21 @@ export class AppController {
     return {user, courseData};
   }
 
+  @ApiBearerAuth()
   @Get('updateInfor')
   @Render('update_infor.ejs')
   UpdateInforPage(@GetUser() user: User) {
     return {user};
   }
 
+  @ApiBearerAuth()
   @Get('naptien')
   @Render('naptien.ejs')
   NaptienPage(@GetUser() user: User) {
     return {user};
   }
 
+  @ApiBearerAuth()
   @Get('mykhoahoc')
   @Render('my_khoahoc.ejs')
   async MyKhoahocPage(@GetUser() user: User) {
