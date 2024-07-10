@@ -2,6 +2,8 @@ import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Response } from 'express';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UserDto } from './user.dto';
+import { AmountDto } from './amount.dto';
 
 
 @ApiTags('user')
@@ -21,7 +23,7 @@ export class UserController {
   @Post('updateUser/:id')
   async updateCourse(
     @Param('id') id: number,
-    @Body() userData: any,
+    @Body() userData: UserDto,
     @Res() res: Response,
   ) {
     const { firstname, lastname, phone, address } = userData;
@@ -37,7 +39,7 @@ export class UserController {
   @Post('Naptien/:id')
   async naptien(
     @Param('id') id: number,
-    @Body() body: { wallet: string },
+    @Body() body: AmountDto,
     @Res() res: Response,
   ) {
     const tien = parseInt(body.wallet, 10);

@@ -4,7 +4,8 @@ import { AdminService } from './admin.service';
 import { Response } from 'express';
 import { Public } from '@modules/auth/decorator/public.decorator';
 import { Course } from '@modules/course/entities/course.entity';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { CourseDto } from '@modules/course/course.dto';
 
 @Public()
 @ApiTags('admin')
@@ -25,7 +26,7 @@ export class AdminController {
   }
 
   @Post('createCourse')
-  async createCourse(@Body() courseData: any, @Res() res: Response) {
+  async createCourse(@Body() courseData: CourseDto, @Res() res: Response) {
     try {
       const { name, description, price } = courseData;
       const course = new Course();
@@ -49,10 +50,11 @@ export class AdminController {
     res.redirect('/adminEditCourse');
   }
 
+
   @Post('updateCourse/:id')
   async updateCourse(
     @Param('id') id: number,
-    @Body() courseData: any,
+    @Body() courseData: CourseDto,
     @Res() res: Response,
   ) {
     const { name, description, price } = courseData;
